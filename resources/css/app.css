@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Font inladen */
+@font-face {
+    font-family: 'CeraProBold';
+    src: url('../font/CeraPro-Bold.woff');
+}
+@font-face {
+    font-family: 'CeraProRegular';
+    src: url('../font/CeraPro-Regular.woff');
+}
+* {
+    font-family: 'CeraProRegular';
+}
+h1 {
+    font-family: 'CeraProBold';
+}
+p {
+    font-family: 'CeraProRegular';
+}
+
+.subpage-hero {
+    height: 350px;
+    width: 100%;
+}
+body {
+    background-color: #f1f1f1;
+}
+.hero {
+    background-image: url(../images/99.jpg);
+    background-size: cover;
+    background-position: center;
+}
