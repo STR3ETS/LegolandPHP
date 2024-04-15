@@ -3,8 +3,8 @@
 
     @section('content')
     <div class="subpage-hero" style="background-image: url('{{ Vite::asset('resources/images/subpage-bg.png') }}')">
-        <div class="max-w-[1400px] h-full mx-auto flex flex-col items-center justify-center">
-            <h1 class="text-[55px] font-[700] text-white">Attracties</h1>
+        <div class="max-w-[1400px] h-full mx-auto flex flex-col justify-center">
+            <h1 class="text-[55px] font-[700] text-white">Attractiessss</h1>
         </div>
     </div>
     <div class="w-full h-auto pb-[5rem]">
