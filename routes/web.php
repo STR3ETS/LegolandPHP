@@ -5,6 +5,8 @@ use App\Http\Controllers\AttractieController;
 use App\Http\Controllers\OpeningstijdController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AccommodatiesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +33,25 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
+
 // Routes voor de formulieren verzenden
 Route::post('/tickets/store', [TicketController::class, 'store']);
 Route::post('/contact/verzenden', [ContactController::class, 'store']);
+
+// Auth middleware
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+});
+ 
+// Auth routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+ 
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
 
