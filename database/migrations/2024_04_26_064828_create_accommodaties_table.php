@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accommodations', function (Blueprint $table) {
+        Schema::create('accommodaties', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->integer('capacity');
-            $table->decimal('price', 8, 2);
+            $table->date('date');
+            $table->boolean('is_available')->default(true);
             $table->timestamps();
         });
     }

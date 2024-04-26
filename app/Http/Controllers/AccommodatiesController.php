@@ -4,47 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Accommodation;
+use App\Models\Accommodaties;
 
 class AccommodatiesController extends Controller
 {
     public function index()
     {
-        $accommodations = Accommodation::all();
-        return view('accommodations.index', compact('accommodations'));
-    }
-    
-    public function create()
-    {
-        return view('accommodations.create');
+        $bookedDates = Accommodaties::where('is_available', false)->pluck('date')->toArray();
+        return view('accommodaties', compact('bookedDates'));
     }
     
     public function store(Request $request)
     {
-        Accommodation::create($request->all());
-        return redirect()->route('accommodations.index');
-    }
+        $request->validate([
+            'date' => 'required|date|after_or_equal:today',
+        ]);
     
-    public function show(Accommodation $accommodation)
-    {
-        return view('accommodations.show', compact('accommodation'));
-    }
+        if (Accommodaties::where('date', $request->date)->where('is_available', false)->exists()) {
+            return redirect('/accommodaties')->withErrors('This date is already booked. Please choose another date.');
+        }
     
-    public function edit(Accommodation $accommodation)
-    {
-        return view('accommodations.edit', compact('accommodation'));
-    }
+        $accommodatie = new Accommodaties();
+        $accommodatie->date = $request->date;
+        $accommodatie->is_available = false;
+        $accommodatie->save();
     
-    public function update(Request $request, Accommodation $accommodation)
-    {
-        $accommodation->update($request->all());
-        return redirect()->route('accommodations.index');
-    }
-    
-    public function destroy(Accommodation $accommodation)
-    {
-        $accommodation->delete();
-        return redirect()->route('accommodations.index');
+        return redirect('/accommodaties');
     }
     
 }
