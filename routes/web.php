@@ -33,7 +33,7 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
+Route::resource('accommodations', AccommodationController::class);
 
 
 // Routes voor de formulieren verzenden
