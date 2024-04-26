@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// als een <a> tag bijvoorbeeld als href "/aatracties" heeft dan gaat hij naar de AttractieController,
+// als een <a> tag bijvoorbeeld als href "/attracties" heeft dan gaat hij naar de AttractieController,
 // daarvan de class index en hier wordt de view gereturned
 Route::get('/attracties', [AttractieController::class, 'index']);
 Route::get('/openingstijden', [OpeningstijdController::class, 'index']);
@@ -35,9 +35,15 @@ Route::get('/contact', function () {
 });
 Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
 
+
 // Routes voor de formulieren verzenden
 Route::post('/tickets/store', [TicketController::class, 'store']);
 Route::post('/contact/verzenden', [ContactController::class, 'store']);
+
+
+
+
+
 
 // Auth middleware
 Route::middleware('auth')->group(function () {
