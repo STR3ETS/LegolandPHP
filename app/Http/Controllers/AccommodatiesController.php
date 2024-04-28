@@ -10,8 +10,8 @@ class AccommodatiesController extends Controller
 {
     public function index()
     {
-        $bookedDates = Accommodaties::where('is_available', false)->pluck('date')->toArray();
-        return view('accommodaties', compact('bookedDates'));
+        $accommodaties = Accommodaties::all();
+        return view('accommodaties', ['accommodaties' => $accommodaties]);
     }
     
     public function store(Request $request)
