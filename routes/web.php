@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// als een <a> tag bijvoorbeeld als href "/attracties" heeft dan gaat hij naar de AttractieController,
+// als een <a> tag bijvoorbeeld als href "/aatracties" heeft dan gaat hij naar de AttractieController,
 // daarvan de class index en hier wordt de view gereturned
 Route::get('/attracties', [AttractieController::class, 'index']);
 Route::get('/attracties/{attractie}', [AttractieController::class, 'show']);
@@ -40,27 +40,5 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/contact', function () {
     return view('contact');
 });
-
-// Accommodaties
-Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
-
-// Routes voor de formulieren verzenden
-Route::post('/tickets/store', [TicketController::class, 'store']);
-Route::post('/contact/verzenden', [ContactController::class, 'store']);
-
-// Auth middleware
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
-});
- 
-// Auth routes
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
- 
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
 
 

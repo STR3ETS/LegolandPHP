@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('accommodaties', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->boolean('is_available')->default(true);
             $table->timestamps();
         });
     }
