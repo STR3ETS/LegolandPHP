@@ -13,8 +13,7 @@
                     <a href="attracties/{{$attractie['id']}}" class="w-[100%] md:w-[50%] lg:w-[30%] h-auto border-[1px] border-[#efefef] rounded-[10px]">
                         <img class="w-full h-[300px] object-cover object-center rounded-tr-[10px] rounded-tl-[10px]" src="{{ Vite::asset('resources/images/' . $attractie['afbeelding_url']) }}">
                         <div class="p-[2rem]">
-                            <h2 class="text-[24px] font-[600] mb-[1rem]">{{ $attractie['titel'] }}</h2>
-                            <p class="text-[16px] font-[400]">{{ $attractie['omschrijving'] }}</p>
+                            <h2 class="text-[24px] font-[600] mb-[1rem] text-center">{{ $attractie['titel'] }}</h2>
                         </div>
                     </a>
                 @endforeach

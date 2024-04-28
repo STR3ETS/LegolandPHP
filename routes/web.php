@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// als een <a> tag bijvoorbeeld als href "/aatracties" heeft dan gaat hij naar de AttractieController,
+// als een <a> tag bijvoorbeeld als href "/attracties" heeft dan gaat hij naar de AttractieController,
 // daarvan de class index en hier wordt de view gereturned
 Route::get('/attracties', [AttractieController::class, 'index']);
 Route::get('/attracties/{attractie}', [AttractieController::class, 'show']);

@@ -19,7 +19,7 @@
     <div class="w-full h-auto">
         <div class="max-w-[1400px] h-full p-[1rem] md:p-[2rem] lg:p-[4rem] bg-white rounded-[25px] -mt-[4rem] mx-auto flex-col md:flex-row flex gap-[2rem]">
             <div class="w-[100%] md:w-[30%] h-full">
-                <div class="w-full h-auto p-[1rem] border-[1px] border-[#f1f1f1] rounded-[10px]">
+                <div class="w-full h-auto p-[1rem] border-[1px] border-[#f1f1f1] rounded-[10px] flex flex-col gap-[1rem]">
                     <div class="flex items-center gap-[1rem]">
                         <svg width="20px" height="20px" viewBox="-3 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             
@@ -38,13 +38,13 @@
                                 </g>
                             </g>
                         </svg>
-                        <p class="text-[16px] font-[600]">Keppelseweg 412, 7009AE Doetinchem</p>
+                        <p class="text-[16px] font-[500]">Keppelseweg 412, 7009AE Doetinchem</p>
                     </div>
                     <div class="flex items-center gap-[1rem]">
                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.0376 5.31617L10.6866 6.4791C11.2723 7.52858 11.0372 8.90532 10.1147 9.8278C10.1147 9.8278 10.1147 9.8278 10.1147 9.8278C10.1146 9.82792 8.99588 10.9468 11.0245 12.9755C13.0525 15.0035 14.1714 13.8861 14.1722 13.8853C14.1722 13.8853 14.1722 13.8853 14.1722 13.8853C15.0947 12.9628 16.4714 12.7277 17.5209 13.3134L18.6838 13.9624C20.2686 14.8468 20.4557 17.0692 19.0628 18.4622C18.2258 19.2992 17.2004 19.9505 16.0669 19.9934C14.1588 20.0658 10.9183 19.5829 7.6677 16.3323C4.41713 13.0817 3.93421 9.84122 4.00655 7.93309C4.04952 6.7996 4.7008 5.77423 5.53781 4.93723C6.93076 3.54428 9.15317 3.73144 10.0376 5.31617Z" fill="#000"/>
                     </svg>
-                        <p class="text-[16px] font-[600]">+31 (0) 6 11 22 33 44</p>
+                        <p class="text-[16px] font-[500]">+31 (0) 6 11 22 33 44</p>
                     </div>
                     <div class="flex items-center gap-[1rem]">
                     <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@
                     </g>
                     </g>
                     </svg>
-                        <p class="text-[16px] font-[600]">info@legolanddoetinchem.nl</p>
+                        <p class="text-[16px] font-[500]">info@legolanddoetinchem.nl</p>
                     </div>
                 </div>
                 <img src="{{ Vite::asset('resources/images/google-maps.png') }}" class="w-full h-auto mt-[2rem]">
