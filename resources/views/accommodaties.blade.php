@@ -26,6 +26,6 @@
 <form method="POST" action="/accommodaties">
     @csrf
     <input type="text" id="datepicker" name="date">
-    <button type="submit">Book</button>
+    <button type="submit">Reseveer</button>
 </form>
 @endsection
