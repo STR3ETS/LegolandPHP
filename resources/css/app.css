@@ -23,6 +23,8 @@ p {
 .subpage-hero {
     height: 350px;
     width: 100%;
+    background-position: center;
+    background-size: cover;
 }
 body {
     background-color: #f1f1f1;

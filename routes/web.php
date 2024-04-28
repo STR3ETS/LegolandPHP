@@ -27,23 +27,26 @@ Route::get('/', function () {
 // als een <a> tag bijvoorbeeld als href "/attracties" heeft dan gaat hij naar de AttractieController,
 // daarvan de class index en hier wordt de view gereturned
 Route::get('/attracties', [AttractieController::class, 'index']);
+Route::get('/attracties/{attractie}', [AttractieController::class, 'show']);
+
+// Openingstijden
 Route::get('/openingstijden', [OpeningstijdController::class, 'index']);
+
+// Tickets
 Route::get('/tickets', [TicketController::class, 'index']);
+
+// Contact
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
 
+// Accommodaties
+Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
 
 // Routes voor de formulieren verzenden
 Route::post('/tickets/store', [TicketController::class, 'store']);
 Route::post('/contact/verzenden', [ContactController::class, 'store']);
-
-
-
-
-
 
 // Auth middleware
 Route::middleware('auth')->group(function () {
