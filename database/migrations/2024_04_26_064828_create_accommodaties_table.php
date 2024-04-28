@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('accommodaties', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->boolean('is_available')->default(true);
+            $table->string('naam');
+            $table->text('omschrijving');
+            $table->string('afbeelding_url');
             $table->timestamps();
         });
     }
