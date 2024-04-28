@@ -48,6 +48,15 @@
     </ul>
 </div>
 @yield('content')
+<div class="w-full h-auto py-[4rem] bg-[#282828]">
+    <div class="max-w-[1400px] h-full mx-auto flex gap-[5rem]">
+        <div class="w-[25%] h-full">
+            <img src="{{ Vite::asset('resources/images/logo-legoland.png') }}" class="max-w-[150px] mb-[1rem]">
+            <p class="leading-[2] opacity-75 text-white">Stap binnen in de betoverende wereld van Legoland, waar fantasie tot leven komt! Ontdek eindeloos plezier, spannende attracties en unieke ervaringen voor het hele gezin.</p>
+        </div>
+        <div class="w-[75%] h-full"></div>
+    </div>
+</div>
 <script>
 // Elementen selecteren
 const mobileMenu = document.getElementById("mobile-menu");
