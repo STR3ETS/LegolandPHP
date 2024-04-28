@@ -1,16 +1,12 @@
 @extends('layout')
 
 @section('content')
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 
 <div class="subpage-hero" style="background-image: url('{{ Vite::asset('resources/images/subpage-bg.png') }}')">
-        <div class="max-w-[1400px] h-full mx-auto flex flex-col justify-center">
-            <h1 class="text-[55px] font-[700] text-white">Accommodaties</h1>
-        </div>
+    <div class="max-w-[1400px] h-full mx-auto flex flex-col justify-center">
+        <h1 class="text-[55px] font-[700] text-white">Accommodaties</h1>
     </div>
 </div>
 
@@ -27,9 +23,4 @@
         </div>
     </div>
 
-<!-- <form method="POST" action="/accommodaties">
-    @csrf
-    <input type="text" id="datepicker" name="date">
-    <button type="submit">Reseveer</button>
-</form>
-@endsection -->
+@endsection
