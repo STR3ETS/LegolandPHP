@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Accommodaties;
+use Illuminate\Support\Facades\Log;
 
 class AccommodatiesController extends Controller
 {
@@ -14,22 +15,10 @@ class AccommodatiesController extends Controller
         return view('accommodaties', ['accommodaties' => $accommodaties]);
     }
     
-    public function store(Request $request)
+    public function show(Accommodaties $accommodatie)
     {
-        $request->validate([
-            'date' => 'required|date|after_or_equal:today',
-        ]);
-    
-        if (Accommodaties::where('date', $request->date)->where('is_available', false)->exists()) {
-            return redirect('/accommodaties')->withErrors('This date is already booked. Please choose another date.');
-        }
-    
-        $accommodatie = new Accommodaties();
-        $accommodatie->date = $request->date;
-        $accommodatie->is_available = false;
-        $accommodatie->save();
-    
-        return redirect('/accommodaties');
+        return view('accommodaties-detail', ['accommodatie' => $accommodatie]);
     }
+    
     
 }

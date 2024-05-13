@@ -42,4 +42,5 @@ Route::get('/contact', function () {
 });
 
 Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
-Route::post('/accommodaties', [AccommodatiesController::class, 'store']);
+Route::get('/accommodaties/{accommodatie}', [AccommodatiesController::class, 'show']);
+
