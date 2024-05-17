@@ -13,7 +13,7 @@
                     <img src="{{ Vite::asset('resources/images/' . $accommodatie['afbeelding_url']) }}">
                 </div>
                 <div class="w-[40%] h-full">
-                    <h1 class="text-[55px] font-[700] text-[#282828] mb-[3rem] leading-[1]">{{$accommodatie->titel}}</h1>
+                    <h1 class="text-[55px] font-[700] text-[#282828] mb-[3rem] leading-[1]">{{$accommodatie->naam}}</h1>
                     <p class="text-[18px] leading-[2] mb-[4rem]">{{$accommodatie->omschrijving}}</p>
                 </div>
             </div>
