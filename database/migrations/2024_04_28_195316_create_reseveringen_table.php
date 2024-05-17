@@ -16,6 +16,9 @@ return new class extends Migration
             $table->date('date');
             $table->integer('geboekt_huis');
             $table->integer('personen');
+            $table->string('naam');
+            $table->string('email');
+            $table->string('telefoon');
             $table->timestamps();
         });
     }
