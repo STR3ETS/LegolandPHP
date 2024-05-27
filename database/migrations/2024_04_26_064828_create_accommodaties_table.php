@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('naam');
             $table->text('omschrijving');
             $table->string('afbeelding_url');
+            $table->double('prijs');
             $table->timestamps();
         });
     }
