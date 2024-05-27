@@ -54,7 +54,21 @@ class OpeningstijdController extends Controller
      */
     public function update(Request $request, Openingstijd $openingstijd)
     {
-        //
+        $request->validate([
+            'dag-van-de-week' => 'required|string',
+            'update-open-om' => 'required|string',
+            'update-gesloten-om' => 'required|string',
+        ]);
+
+        $openingstijd = Openingstijd::updateOrCreate(
+            ['dag' => $request->input('dag-van-de-week')],
+            [
+                'open_om' => $request->input('update-open-om'),
+                'gesloten_om' => $request->input('update-gesloten-om')
+            ]
+        );
+
+        return redirect()->back();
     }
 
     /**
