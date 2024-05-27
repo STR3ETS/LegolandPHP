@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Accommodaties;
+use App\Models\Reserveringen;
 use Illuminate\Support\Facades\Log;
 
 class AccommodatiesController extends Controller
@@ -20,5 +21,28 @@ class AccommodatiesController extends Controller
         return view('accommodaties-detail', ['accommodatie' => $accommodatie]);
     }
     
+    public function store(Request $request, Accommodaties $accommodatie)
+    {
+        $request->validate([
+            'naam' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'telefoonnummer' => 'required|string|max:15',
+            'checkindate' => 'required|date',
+            'checkoutdate' => 'required|date',
+            'kamers' => 'required|integer|min:1|max:10',
+        ]);
+
+        Reserveringen::create([
+            'naam' => $request->naam,
+            'email' => $request->email,
+            'telefoonnummer' => $request->telefoonnummer,
+            'checkindate' => $request->checkindate,
+            'checkoutdate' => $request->checkoutdate,
+            'geboekt_huis' => $accommodatie->id,
+            'kamers' => $request->kamers,
+        ]);
+
+        return redirect('/accommodaties')->with('success', 'Reservering succesvol gemaakt!');
+    }
     
 }

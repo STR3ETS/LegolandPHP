@@ -7,6 +7,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccommodatiesController;
+use App\Models\Openingstijd;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::get('/attracties/{attractie}', [AttractieController::class, 'show']);
 
 // Openingstijden
 Route::get('/openingstijden', [OpeningstijdController::class, 'index']);
+Route::post('/update-openingstijden', [OpeningstijdController::class, 'update'])->name('update.openingstijden');
 
 // Tickets
 Route::get('/tickets', [TicketController::class, 'index']);
@@ -43,4 +45,20 @@ Route::get('/contact', function () {
 
 Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
 Route::get('/accommodaties/{accommodatie}', [AccommodatiesController::class, 'show']);
+Route::post('/reserveringen/{accommodatie}', [AccommodatiesController::class, 'store'])->name('reservering.store');
 
+// Auth middleware
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        $openingstijden = Openingstijd::all();
+        return view('dashboard', ['openingstijden' => $openingstijden]);
+    });
+});
+ 
+// Auth routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+ 
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
