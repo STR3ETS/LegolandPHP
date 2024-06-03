@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Accommodaties extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'naam',
+        'omschrijving',
+        'afbeelding_url',
+        'prijs',
+    ];
 }
