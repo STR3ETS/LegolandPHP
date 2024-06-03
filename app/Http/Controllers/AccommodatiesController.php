@@ -45,4 +45,25 @@ class AccommodatiesController extends Controller
         return redirect('/accommodaties')->with('success', 'Reservering succesvol gemaakt!');
     }
     
+    public function create(Request $request)
+    {
+        $request->validate([
+            'naam' => 'required|string|max:255',
+            'omschrijving' => 'required|string',
+            'afbeelding_url' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'prijs' => 'required|numeric|min:0',
+        ]);
+
+        $afbeeldingPath = $request->file('afbeelding_url')->store('images', 'public');
+        $afbeeldingUrl = basename($afbeeldingPath);
+
+        Accommodaties::create([
+            'naam' => $request->naam,
+            'omschrijving' => $request->omschrijving,
+            'afbeelding_url' => $afbeeldingUrl,
+            'prijs' => $request->prijs,
+        ]);
+
+        return redirect('/accommodaties')->with('success', 'Accommodatie succesvol toegevoegd!');
+    }
 }

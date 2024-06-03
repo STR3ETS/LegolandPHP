@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css', 'resources/js/app.js')
     <title>Document test</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 <body>
 <header class="w-full h-auto absolute top-0 z-[999] py-[2rem]">
@@ -19,6 +20,15 @@
             <li><a href="/tickets">Tickets</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/accommodaties">Accommodaties</a></li>
+            @auth
+            <li><a href="/dashboard">Dashboard</a></li>
+            @endauth
+            @auth
+            <li><a href="/register">Register</a></li>
+            @endauth
+            @guest
+                <p><a href="/login">login</a></p>
+            @endguest
         </ul>
         <div class="lg:hidden flex hover:cursor-pointer" id="hamburger-icon">
             <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
