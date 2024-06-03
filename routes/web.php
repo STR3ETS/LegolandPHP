@@ -8,6 +8,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccommodatiesController;
 use App\Models\Openingstijd;
+use App\Models\Ticket;
+use App\Models\Attractie;
 
 /*
 |--------------------------------------------------------------------------
