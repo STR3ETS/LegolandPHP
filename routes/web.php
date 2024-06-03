@@ -8,6 +8,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccommodatiesController;
 use App\Models\Openingstijd;
+use App\Models\Ticket;
+use App\Models\Attractie;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,7 @@ Route::post('/update-openingstijden', [OpeningstijdController::class, 'update'])
 
 // Tickets
 Route::get('/tickets', [TicketController::class, 'index']);
+Route::post('/update-tickets', [TicketController::class, 'update'])->name('update.tickets');
 
 // Contact
 Route::get('/contact', [ContactController::class, 'index']);
@@ -46,19 +49,22 @@ Route::get('/contact', function () {
 Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
 Route::get('/accommodaties/{accommodatie}', [AccommodatiesController::class, 'show']);
 Route::post('/reserveringen/{accommodatie}', [AccommodatiesController::class, 'store'])->name('reservering.store');
+Route::post('/accommodaties', [AccommodatiesController::class, 'create'])->name('accommodaties.create');
 
-// Auth middleware
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         $openingstijden = Openingstijd::all();
-        return view('dashboard', ['openingstijden' => $openingstijden]);
+        $tickets = Ticket::all();
+        $attracties = Attractie::all();
+        return view('dashboard', ['openingstijden' => $openingstijden, 'tickets' => $tickets,'attracties' => $attracties]);
     });
+
+    Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
 });
+ 
  
 // Auth routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
- 
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);

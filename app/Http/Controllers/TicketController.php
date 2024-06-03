@@ -82,7 +82,17 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        //
+        $request->validate([
+            'leeftijdsgroep' => 'required|string',
+            'update-prijs-ticket' => 'required|numeric',
+        ]);
+
+        $ticket = Ticket::updateOrCreate(
+            ['leeftijdsgroep' => $request->input('leeftijdsgroep')],
+            ['prijs' => $request->input('update-prijs-ticket')]
+        );
+
+        return redirect()->back();
     }
 
     /**
