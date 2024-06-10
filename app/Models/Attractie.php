@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Attractie extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'titel',
+        'omschrijving',
+        'afbeelding_url',
+    ];
 }

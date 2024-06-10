@@ -10,7 +10,7 @@
             <a href="/attracties" class="underline opacity-75 hover:opacity-100 transition">Terug naar alle attracties</a>
             <div class="flex gap-[4rem] justify-between items-center mt-[1rem]">
                 <div class="w-[60%] h-full">
-                    <img src="{{ Vite::asset('resources/images/' . $attractie['afbeelding_url']) }}">
+                    <img src="{{ asset('storage/images/' . $attractie['afbeelding_url']) }}">
                 </div>
                 <div class="w-[40%] h-full">
                     <h1 class="text-[55px] font-[700] text-[#282828] mb-[3rem] leading-[1]">{{$attractie->titel}}</h1>

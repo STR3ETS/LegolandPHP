@@ -10,6 +10,8 @@ use App\Http\Controllers\AccommodatiesController;
 use App\Models\Openingstijd;
 use App\Models\Ticket;
 use App\Models\Attractie;
+use App\Models\Contact;
+use App\Models\Accommodaties;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,9 @@ Route::get('/', function () {
 // daarvan de class index en hier wordt de view gereturned
 Route::get('/attracties', [AttractieController::class, 'index']);
 Route::get('/attracties/{attractie}', [AttractieController::class, 'show']);
+Route::delete('/attracties/{attractie}', [AttractieController::class, 'destroy'])->name('delete.attractie');
+Route::put('/attracties/{attractie}', [AttractieController::class, 'update'])->name('update.attractie');
+Route::post('/attracties', [AttractieController::class, 'create'])->name('create.attractie');
 
 // Openingstijden
 Route::get('/openingstijden', [OpeningstijdController::class, 'index']);
@@ -42,21 +47,24 @@ Route::post('/update-tickets', [TicketController::class, 'update'])->name('updat
 
 // Contact
 Route::get('/contact', [ContactController::class, 'index']);
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::post('/contact/verzenden', [ContactController::class, 'store']);
+Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('delete.contact');
 
+// Accomodaties
 Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
 Route::get('/accommodaties/{accommodatie}', [AccommodatiesController::class, 'show']);
 Route::post('/reserveringen/{accommodatie}', [AccommodatiesController::class, 'store'])->name('reservering.store');
 Route::post('/accommodaties', [AccommodatiesController::class, 'create'])->name('accommodaties.create');
+Route::delete('/accommodaties/{accomodatie}', [AccommodatiesController::class, 'destroy'])->name('delete.accommodatie');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         $openingstijden = Openingstijd::all();
         $tickets = Ticket::all();
         $attracties = Attractie::all();
-        return view('dashboard', ['openingstijden' => $openingstijden, 'tickets' => $tickets,'attracties' => $attracties]);
+        $contacts = Contact::all();
+        $accommodaties = Accommodaties::all();
+        return view('dashboard', ['openingstijden' => $openingstijden, 'tickets' => $tickets, 'attracties' => $attracties, 'contacts' => $contacts, 'accommodaties' => $accommodaties]);
     });
 
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');

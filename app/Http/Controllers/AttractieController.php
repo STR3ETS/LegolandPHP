@@ -20,9 +20,24 @@ class AttractieController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        
+        $request->validate([
+            'titel' => 'required',
+            'omschrijving' => 'required',
+            'afbeelding_url' => 'required',
+        ]);
+
+        $afbeeldingPath = $request->file('afbeelding_url')->store('images', 'public');
+        $afbeeldingUrl = basename($afbeeldingPath);
+
+        Attractie::create([
+            'titel' => $request->titel,
+            'omschrijving' => $request->omschrijving,
+            'afbeelding_url' => $afbeeldingUrl,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -54,7 +69,24 @@ class AttractieController extends Controller
      */
     public function update(Request $request, Attractie $attractie)
     {
-        //
+        $validatedData = $request->validate([
+            'attractie-titel' => 'required|string|max:255',
+            'attractie-omschrijving' => 'required|string',
+            'attractie-afbeeldingurl' => 'nullable|file|image|max:2048',
+        ]);
+    
+        $attractie->titel = $validatedData['attractie-titel'];
+        $attractie->omschrijving = $validatedData['attractie-omschrijving'];
+    
+        if ($request->hasFile('attractie-afbeeldingurl')) {
+            $path = $request->file('attractie-afbeeldingurl')->store('images', 'public');
+            $filename = basename($path);
+            $attractie->afbeelding_url = $filename;
+        }
+    
+        $attractie->save();
+    
+        return redirect()->back();
     }
 
     /**
@@ -62,6 +94,8 @@ class AttractieController extends Controller
      */
     public function destroy(Attractie $attractie)
     {
-        //
+        $attractie->delete();
+        
+        return redirect()->back();
     }
 }
