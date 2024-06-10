@@ -54,8 +54,9 @@ Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->nam
 Route::get('/accommodaties', [AccommodatiesController::class, 'index']);
 Route::get('/accommodaties/{accommodatie}', [AccommodatiesController::class, 'show']);
 Route::post('/reserveringen/{accommodatie}', [AccommodatiesController::class, 'store'])->name('reservering.store');
-Route::post('/accommodaties', [AccommodatiesController::class, 'create'])->name('accommodaties.create');
-Route::delete('/accommodaties/{accomodatie}', [AccommodatiesController::class, 'destroy'])->name('delete.accommodatie');
+Route::delete('/accommodaties/{attractie}', [AccommodatiesController::class, 'destroy'])->name('delete.accommodatie');
+Route::put('/accommodaties/{attractie}', [AccommodatiesController::class, 'update'])->name('update.accommodatie');
+Route::post('/accommodaties', [AccommodatiesController::class, 'create'])->name('create.accommodatie');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {

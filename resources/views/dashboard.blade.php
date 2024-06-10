@@ -246,4 +246,61 @@
             </div>
         </div>
     </div>
+
+    <div class="w-full h-auto py-[5rem] pb-[10rem]">
+        <div class="max-w-[1400px] h-full mx-auto flex flex-col justify-end">
+            <h2 class="text-[24px] font-[600]">Accommodaties</h2>
+            <p class="mb-[2rem]">Voeg een accommodatie toe / update een accommodatie / verwijder een accommodatie</p>
+            <div class="w-full h-auto px-[2rem] rounded-[10px] bg-white">
+                @foreach($accommodaties as $accommodatie)
+                    <div class="w-full h-auto py-[2rem] border-y-[1px] border-b-[#f1f1f1]" id="{{ $accommodatie['id'] }}">
+                        <form method="POST" action="{{ route('update.accommodatie', $accommodatie['id']) }}" class="flex gap-[3rem]" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="accommodatie_id" value="{{ $accommodatie['id'] }}">
+                            <div class="w-1/4 h-auto">
+                                <textarea class="w-full" rows="6" id="accommodatie-naam" name="accommodatie-naam">{{ $accommodatie['naam'] }}</textarea>
+                            </div>
+                            <div class="w-1/4 h-auto">
+                                <textarea class="w-full" rows="6" id="accommodatie-omschrijving" name="accommodatie-omschrijving">{{ $accommodatie['omschrijving'] }}</textarea>
+                            </div>
+                            <div class="w-1/4 h-auto flex overflow-show">
+                                <input type="file" name="accommodatie-afbeeldingurl" id="accommodatie-afbeeldingurl" class="w-full rounded-md border-gray-300">
+                            </div>
+                            <div class="w-1/4 h-auto flex flex-col items-end gap-[1rem]">
+                                <input type="submit" name="update-prijs-verzenden" class="w-full h-auto py-[1rem] bg-red-500 text-white flex items-center justify-center rounded-[10px]" value="Aanpassing doorvoeren">
+                            </div>
+                        </form>
+                        <form class="w-full flex justify-end" method="POST" action="{{ route('delete.accommodatie', $accommodatie['id']) }}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="accommodatie_id" value="{{ $accommodatie['id'] }}">
+                            <input type="submit" name="delete-accommodatie-verzenden" class="w-fit h-auto text-[14px] py-[0.75rem] px-[1.5rem] bg-red-800 text-white flex items-center justify-center rounded-[10px]" value="Attractie verwijderen">
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+            <h3 class="text-[20px] font-[600] my-[2rem]">Accommodatie toevoegen</h3>
+            <div class="w-full h-auto p-[2rem] bg-white rounded-[10px]">
+                <form action="{{ route('create.accommodatie') }}" method="POST" enctype="multipart/form-data" class="flex gap-[3rem] justify-between items-center">
+                    @csrf
+                    <div class="w-1/4 h-full">
+                        <p>Naam</p>
+                        <input type="text" name="naam" class="w-full px-[0.75rem] py-[0.5rem] focus:outline-none rounded-[5px] bg-[#f1f1f1]">
+                    </div>
+                    <div class="w-1/4 h-full">
+                        <p>Omschrijving</p>
+                        <input type="text" name="omschrijving" class="w-full px-[0.75rem] py-[0.5rem] focus:outline-none rounded-[5px] bg-[#f1f1f1]">
+                    </div>
+                    <div class="w-1/4 h-full">
+                        <p>Afbeelding</p>
+                        <input type="file" name="afbeelding_url" id="afbeelding_url" class="w-full rounded-md border-gray-300">
+                    </div>
+                    <div class="w-1/4 h-full flex items-center justify-end">
+                        <input type="submit" value="accommodatie toevoegen" class="w-fit h-auto py-[0.75rem] px-[1.5rem] bg-green-500 text-white flex items-center justify-center rounded-[10px]">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
